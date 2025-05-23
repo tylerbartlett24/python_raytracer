@@ -21,7 +21,7 @@ def intersect_check(O, D, shape):
         t2 = math.inf
         return t1, t2
     
-def compute_lighting(p, n, lights):
+def compute_lighting(p, n, v, s, lights):
     i = 0.0
     for light in lights:
         if light.type == "ambient":
@@ -31,11 +31,23 @@ def compute_lighting(p, n, lights):
                 l = light.position - p
             else:
                 l = light.direction
+            
+            #Diffuse
             n_dot_l = np.dot(n, l)
             if n_dot_l > 0:
-                n_length = np.linalg.norm(n)
-                p_length = np.linalg.norm(p)
-                i += light.intensity * n_dot_l/(n_length * p_length)
+                n_len = np.linalg.norm(n)
+                p_len = np.linalg.norm(p)
+                i += light.intensity * n_dot_l/(n_len * p_len)
+                
+            #Specular
+            if s != -1:
+                r = 2 * n *n_dot_l - l
+                r_dot_v = np.dot(r, v)
+                if r_dot_v > 0:
+                    r_len = np.linalg.norm(r)
+                    v_len = np.linalg.norm(v)
+                    i += (light.intensity * 
+                          math.pow(n_dot_l/(r_len * v_len), s))
             
     return i
 
@@ -74,7 +86,9 @@ def trace_ray(camera, direction, t_min, t_max, shapes):
     normal = normal / np.linalg.norm(normal)
     
     color_array = hex_to_rgb(closest_shape.color)
-    lighting_scalar = compute_lighting(intersection, normal, lights)
+    s = closest_shape.specular
+    v = -1 * direction
+    lighting_scalar = compute_lighting(intersection, normal, v, s, lights)
     lit_tuple = tuple([max(0, min(255, int(lighting_scalar * x))) 
                        for x in color_array])
     

@@ -25,7 +25,7 @@ light_3 = DirectionalLight(0.2, 1, 4, 4)
 lights = [light_1, light_2, light_3]
 
 #Create new shapes here and add them to the scene array
-sphere_1 = Sphere(np.array([0, -1, 3]), 1, "#ff0000")
-sphere_2 = Sphere(np.array([-2, 0, 4]), 1, "#00ff00")
-sphere_3 = Sphere(np.array([2, 0, 4]), 1, "#0000ff")
+sphere_1 = Sphere(np.array([0, -1, 3]), 1, "#ff0000", 500)
+sphere_2 = Sphere(np.array([-2, 0, 4]), 1, "#00ff00", 500)
+sphere_3 = Sphere(np.array([2, 0, 4]), 1, "#0000ff", 500)
 scene = [sphere_1, sphere_2, sphere_3]
