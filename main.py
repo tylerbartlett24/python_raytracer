@@ -23,7 +23,7 @@ def main():
         for y in range(-C_h//2, C_h//2):
             S_y = y_transform(y)
             D = canvas_to_viewport(x, y)
-            color = trace_ray(O, D, 1, math.inf, scene)
+            color = trace_ray(O, D, 1, math.inf, scene, 3)
             canvas.create_rectangle(S_x, S_y, S_x, S_y, outline=color)
 
     mainloop()

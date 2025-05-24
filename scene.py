@@ -16,16 +16,20 @@ V_h = 1
 d = 1
 
 #Location of the camera
-O = np.array([0, 0, 0])
+O = np.array([0.0, 0.0, 0.0])
+
+#The background colour of the scene
+BACKGROUND_COLOR = "#000000"
 
 #Create new light sources here and add them to the lights array
-light_1 = AmbientLight(0.2)
-light_2 = PointLight(0.6, 2, 1, 0)
-light_3 = DirectionalLight(0.2, 1, 4, 4)
+light_1 = AmbientLight(0.6)
+light_2 = PointLight(0.8, 2.0, 1.0, 0.0)
+light_3 = DirectionalLight(0.8, 1.0, 4.0, 4.0)
 lights = [light_1, light_2, light_3]
 
 #Create new shapes here and add them to the scene array
-sphere_1 = Sphere(np.array([0, -1, 3]), 1, "#ff0000", 500)
-sphere_2 = Sphere(np.array([-2, 0, 4]), 1, "#00ff00", 500)
-sphere_3 = Sphere(np.array([2, 0, 4]), 1, "#0000ff", 500)
+sphere_1 = Sphere(np.array([0.0, -1.0, 3.0]), 1.0, "#ff0000", 500, 0.5)
+sphere_2 = Sphere(np.array([-2.0, 0.0, 4.0]), 1.0, "#00ff00", 500, 0.3)
+sphere_3 = Sphere(np.array([2.0, 0.0, 4.0]), 1.0, "#0000ff", 10, 0.2)
+#sphere_4 = Sphere(np.array([0, 1, 4]), 1, "#ffff00", 10)
 scene = [sphere_1, sphere_2, sphere_3]
