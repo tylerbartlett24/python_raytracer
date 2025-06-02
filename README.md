@@ -1,2 +1,4 @@
 # python_raytracer
-A basic python raytracer
+A software raytracer implemented in Python.
+
+## Contributing
